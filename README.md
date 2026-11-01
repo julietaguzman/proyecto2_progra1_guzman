@@ -10,10 +10,13 @@ Este programa consiste en una linea de comando que lee un archivo JSON con la in
 
 ## Ejercucion:
 Para consultar resumen: 
+
 ''' bash
 python consultar_satelites.py datos/satelites.json resumen
 '''
+
 Para consultar zona:
+
 ''' bash
 python consultar_satelites.py datos/satelites.json zona longitud minima latitud minima longitud maxima latitud maxima 
 '''
