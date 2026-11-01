@@ -17,7 +17,7 @@ python consultar_satelites.py datos/satelites.json resumen
 
 Para consultar zona:
 ```python
-python consultar_satelites.py datos/satelites.json zona longitud minima latitud minima longitud maxima latitud maxima 
+python consultar_satelites.py datos/satelites.json zona -76.30 -46.13 -66.30 -36.13
 ```
 
 ## Pruebas unitarias:
