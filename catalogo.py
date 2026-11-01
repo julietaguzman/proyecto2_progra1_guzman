@@ -6,24 +6,27 @@ def leer_archivo(ruta):
     with open(ruta, "r") as archivo:
         return json.load(archivo)
 
-def catalogo(registros):
+def crear_catalogo(registros):
     satelites = []
     for registro in registros:
         latitud, longitud, altitud = obtener_posicion(registro)
-        satelite = Satelite(
-            nombre = registro["OBJECT_NAME"],
-            num_catalogo = int(registro["NORAD_CAT_ID"]),
-            latitud = latitud,
-            longitud = longitud, 
-            altitud = altitud
-        )
-        satelites.append(satelite)
+        try:
+            satelite = Satelite(
+                nombre = registro["OBJECT_NAME"],
+                num_catalogo = int(registro["NORAD_CAT_ID"]),
+                latitud = latitud,
+                longitud = longitud, 
+                altitud = altitud
+            )
+            satelites.append(satelite)
+        except ValueError:
+            continue
     return satelites
 
 def resumen_por_orbita(satelites):
     agrupados = {}
     for satelite in satelites:
-        tipo = satelite.tipo_orbital()
+        tipo = satelite.tipo_orbita()
         if tipo not in agrupados:
             agrupados[tipo] = []
         agrupados[tipo].append(satelite.altitud)
@@ -38,9 +41,9 @@ def resumen_por_orbita(satelites):
     }
     return resumen
 
-def satellites_en_zona(satelites, lon_min, lat_min, lon_max, lat_max):
-    return [
-        satelite
-        for satelite in satelites
-        if satelite.esta_en_zona(lon_min, lat_min, lon_max, lat_max)
-    ]
+def satelites_en_zona(satelites, lon_min, lat_min, lon_max, lat_max):
+    encontrados = []
+    for satelite in satelites:
+        if satelite.esta_en_zona(lon_min, lat_min, lon_max, lat_max):
+            encontrados.append(satelite)
+    return encontrados
