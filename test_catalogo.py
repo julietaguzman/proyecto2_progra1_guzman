@@ -82,12 +82,14 @@ def test_resumen_por_orbita():
     satelites = [
         Satelite("A", 1, 0, 0, 400),
         Satelite("B", 2, 0, 0, 2000),
-        Satelite("C", 3, 0, 0, 3000)
+        Satelite("C", 3, 0, 0, 3000),
+        Satelite("D", 4, 0, 0, 35000),
     ]
 
     resumen = resumen_por_orbita(satelites)
     assert resumen["LEO"]["cantidad"] == 1
     assert resumen["MEO"]["cantidad"] == 2
+    assert resumen["GEO"]["cantidad"] == 1
     assert resumen["MEO"]["min"] == 2000
     assert resumen["MEO"]["max"] == 3000
     assert resumen["MEO"]["promedio"] == 2500.0
