@@ -10,16 +10,19 @@ Este programa consiste en una linea de comando que lee un archivo JSON con la in
 
 ## Ejercucion:
 Para consultar resumen: 
-''' bash
+
+```python
 python consultar_satelites.py datos/satelites.json resumen
-'''
+```
+
 Para consultar zona:
-''' bash
-python consultar_satelites.py datos/satelites.json zona longitud minima latitud minima longitud maxima latitud maxima 
-'''
+```python
+python consultar_satelites.py datos/satelites.json zona -76.30 -46.13 -66.30 -36.13
+```
 
 ## Pruebas unitarias:
 El proyecto cuenta con pruebas unitarias para la clase Satelite y el modulo catalogo. Ejercucion:
-''' bash
+```python
 pytest --cov=. --cov-report=html
-'''
+```
+
